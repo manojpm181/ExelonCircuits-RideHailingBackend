@@ -1,0 +1,176 @@
+
+{
+    "info": {
+      "_postman_id": "f8e6c35f-7a77-4e7b-a3f3-ride-hailing-backend",
+      "name": "Ride Hailing API Collection",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Auth - Register",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:5000/api/auth/register",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["api", "auth", "register"]
+          },
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"name\": \"John Driver\",\n    \"email\": \"john@example.com\",\n    \"password\": \"pass123\",\n    \"role\": \"driver\",\n    \"vehicleDetails\": \"KA-05-MC-1234\"\n}"
+          }
+        }
+      },
+      {
+        "name": "Auth - Login",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "url": {
+            "raw": "http://localhost:5000/api/auth/login",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["api", "auth", "login"]
+          },
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"email\": \"john@example.com\",\n    \"password\": \"pass123\"\n}"
+          }
+        }
+      },
+      {
+        "name": "Driver - Set Status (Online)",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{token}}"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "url": {
+            "raw": "http://localhost:5000/api/drivers/driver123/status",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["api", "drivers", "driver123", "status"]
+          },
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"status\": \"online\"\n}"
+          }
+        }
+      },
+      {
+        "name": "Driver - Update Location",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{token}}"
+            }
+          ],
+          "url": {
+            "raw": "http://localhost:5000/api/drivers/driver123/location",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["api", "drivers", "driver123", "location"]
+          },
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"latitude\": 12.9716,\n    \"longitude\": 77.5946\n}"
+          }
+        }
+      },
+      {
+        "name": "Ride - Request",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{token}}"
+            }
+          ],
+          "url": {
+            "raw": "http://localhost:5000/api/rides/request",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["api", "rides", "request"]
+          },
+          "body": {
+            "mode": "raw",
+            "raw": "{\n    \"currentLocation\": {\"latitude\": 12.9716, \"longitude\": 77.5946},\n    \"destination\": {\"latitude\": 12.9352, \"longitude\": 77.6145}\n}"
+          }
+        }
+      },
+      {
+        "name": "Ride - Status",
+        "request": {
+          "method": "GET",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{token}}"
+            }
+          ],
+          "url": {
+            "raw": "http://localhost:5000/api/rides/ride123/status",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["api", "rides", "ride123", "status"]
+          }
+        }
+      },
+      {
+        "name": "Ride - Rider History",
+        "request": {
+          "method": "GET",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{token}}"
+            }
+          ],
+          "url": {
+            "raw": "http://localhost:5000/api/riders/rider123/rides",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["api", "riders", "rider123", "rides"]
+          }
+        }
+      },
+      {
+        "name": "Ride - Driver History",
+        "request": {
+          "method": "GET",
+          "header": [
+            {
+              "key": "Authorization",
+              "value": "Bearer {{token}}"
+            }
+          ],
+          "url": {
+            "raw": "http://localhost:5000/api/drivers/driver123/rides",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "5000",
+            "path": ["api", "drivers", "driver123", "rides"]
+          }
+        }
+      }
+    ]
+  }
